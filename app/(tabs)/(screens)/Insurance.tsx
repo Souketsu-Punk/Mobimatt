@@ -13,57 +13,28 @@ const App = () => {
     <ScrollView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.greeting}>Good morning</Text>
-        <Text style={styles.userName}>MobiMatt</Text>
+        <Text style={styles.userName}>Insurance</Text>
         <Image source={{ uri: 'https://via.placeholder.com/50' }} style={styles.profileImage} />
-      </View>
-
-      {/* Actions */}
-      <View style={styles.actionContainer}>
-        <TouchableOpacity style={styles.actionButton} >
-          <Text style={styles.actionText}>Send to Mobile</Text>
-        </TouchableOpacity>
-        <Pressable style={styles.actionButton} onPress={()=> router.push('/(tabs)/(screens)/PushNotif')}>
-          <Text style={styles.actionText}>Push Payment Notifications</Text>
-        </Pressable>
-        <TouchableOpacity style={styles.actionButton} onPress={()=> router.push('/(tabs)/(screens)/ReceivedPayments')}>
-          <Text style={styles.actionText}>Received Payments</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.actionButton} onPress={()=> router.push('/(tabs)/(screens)/Insurance')} >
-          <Text style={styles.actionText}>Insurance</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.actionButton} onPress={()=> router.push('/(tabs)/(screens)/Earnings')}>
-          <Text style={styles.actionText}>Earnings</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.actionButton} onPress={()=> router.push('/(tabs)/(screens)/Help')}>
-          <Text style={styles.actionText}>Settings & Help</Text>
-        </TouchableOpacity>
       </View>
 
       {/* Account Summary */}
       <View style={styles.accountSummary}>
-        <Text style={styles.accountTitle}>Vehicle number:</Text>
-        <Text style={styles.balance}>Driver: </Text>
-        <Text style={styles.ledger}>Vehicle status(active/inactive): </Text>
+        <Text style={styles.accountTitle}>Insurance Company:</Text>
+        <Text style={styles.balance}>Vehicle: </Text>
+        <Text style={styles.ledger}>Insurance status(valid/Expired): </Text>
         <Text style={styles.balance}>Sacco: </Text>
       </View>
 
       {/* Navigation Menu */}
       <View style={styles.menu}>
         <TouchableOpacity style={styles.menuItem}>
-          <Text style={styles.menuText}>Route: </Text>  
+          <Text style={styles.menuText}>Renew Insurance</Text>  
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuItem} onPress={()=> router.push('/(tabs)/(screens)/(Insurance Pages)/Change')}>
+          <Text style={styles.menuText}>Change Insurance Company</Text>  
         </TouchableOpacity>
         <TouchableOpacity style={styles.menuItem}>
-          <Text style={styles.menuText}>Destination: </Text>  
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
-          <Text style={styles.menuText}>Vehicle Occupancy: </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
-          <Text style={styles.menuText}>Reserved seats:            Available seats:  </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
-          <Text style={styles.menuText}>EST: </Text>
+          <Text style={styles.menuText}>View/Update Insurance Details</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

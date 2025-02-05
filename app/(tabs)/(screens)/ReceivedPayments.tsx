@@ -1,69 +1,31 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Pressable } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { Link, router } from 'expo-router';
-
-
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
 
 const App = () => {
-  const navigation = useNavigation();
   return (
-
-
     <ScrollView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.greeting}>Good morning</Text>
-        <Text style={styles.userName}>MobiMatt</Text>
+        <Text style={styles.userName}>Inbox</Text>
         <Image source={{ uri: 'https://via.placeholder.com/50' }} style={styles.profileImage} />
-      </View>
-
-      {/* Actions */}
-      <View style={styles.actionContainer}>
-        <TouchableOpacity style={styles.actionButton} >
-          <Text style={styles.actionText}>Send to Mobile</Text>
-        </TouchableOpacity>
-        <Pressable style={styles.actionButton} onPress={()=> router.push('/(tabs)/(screens)/PushNotif')}>
-          <Text style={styles.actionText}>Push Payment Notifications</Text>
-        </Pressable>
-        <TouchableOpacity style={styles.actionButton} onPress={()=> router.push('/(tabs)/(screens)/ReceivedPayments')}>
-          <Text style={styles.actionText}>Received Payments</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.actionButton} onPress={()=> router.push('/(tabs)/(screens)/Insurance')} >
-          <Text style={styles.actionText}>Insurance</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.actionButton} onPress={()=> router.push('/(tabs)/(screens)/Earnings')}>
-          <Text style={styles.actionText}>Earnings</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.actionButton} onPress={()=> router.push('/(tabs)/(screens)/Help')}>
-          <Text style={styles.actionText}>Settings & Help</Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* Account Summary */}
-      <View style={styles.accountSummary}>
-        <Text style={styles.accountTitle}>Vehicle number:</Text>
-        <Text style={styles.balance}>Driver: </Text>
-        <Text style={styles.ledger}>Vehicle status(active/inactive): </Text>
-        <Text style={styles.balance}>Sacco: </Text>
       </View>
 
       {/* Navigation Menu */}
       <View style={styles.menu}>
         <TouchableOpacity style={styles.menuItem}>
-          <Text style={styles.menuText}>Route: </Text>  
+          <Text style={styles.menuText}>Text 1.....</Text>  
         </TouchableOpacity>
         <TouchableOpacity style={styles.menuItem}>
-          <Text style={styles.menuText}>Destination: </Text>  
+          <Text style={styles.menuText}>Text 2.....</Text>  
         </TouchableOpacity>
         <TouchableOpacity style={styles.menuItem}>
-          <Text style={styles.menuText}>Vehicle Occupancy: </Text>
+          <Text style={styles.menuText}>Text 3......</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.menuItem}>
-          <Text style={styles.menuText}>Reserved seats:            Available seats:  </Text>
+          <Text style={styles.menuText}>Text 4.......</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.menuItem}>
-          <Text style={styles.menuText}>EST: </Text>
+          <Text style={styles.menuText}>Text 5........</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

@@ -1,0 +1,27 @@
+Checkbox:
+
+Troubleshooting page: dropdown instructions, contact embed
+
+settings: font size and color, notification sound, dark mode toggle
+	  Location preferences(share with passengers or not), review data usage and data collected.
+	  Route Updates? delays?
+	  account actions
+
+Delays: form fills and emergency contacts.
+
+getting Started and Using the app: Instructions pages.
+
+Feedback and Suggestions: feedback/rate app
+			  provide documented feedback, select type, fill in text,sent to email.
+Faq page
+
+
+
+Earnings written in comments
+
+Insurance page:
+		Renew insurance form, Takes you to the exact company and page from already stored data
+		Change Insurance Company form. Lists the Insurance companies, clicking takes you to 			their page.
+		View/Update Insurance Details. takes you to the company update details page.
+
+Push Notif:	Functioning Buttons

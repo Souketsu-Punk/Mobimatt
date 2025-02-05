@@ -1,0 +1,95 @@
+To implement a push notification system where one or more different people (such as supervisors, support staff, or backup drivers) receive the same message notification as the primary recipient (driver), you would need to design the system to support the following features:
+
+### 1. **User Roles and Grouping**
+   - **Primary Recipient**: The driver who is directly involved in the event or situation (e.g., delays, emergencies, route changes).
+   - **Secondary Recipients**: Additional users (e.g., supervisors, dispatchers, backup drivers, support staff) who should be notified when a specific event occurs.
+   - **Groups or Notification Lists**: The system allows for grouping users by roles, teams, or situations. For example, a route-specific group for all drivers and support staff on a specific route, or a company-wide alert group.
+
+### 2. **System Design & Workflow**
+
+   #### **Step 1: Notification Setup**
+   - **Create Notification Groups**: Admins or drivers can create "notification groups" for specific events (e.g., emergency, route delays, shift changes). These groups define which users (or roles) should receive the same notification.
+     - Example: A group for a route might include the assigned driver, the backup driver, and the route supervisor.
+     - Example: A group for emergencies might include the driver, dispatch, and on-call support staff.
+     
+   #### **Step 2: Define Notification Triggers**
+   - **Event Triggers**: Set up triggers that define when a notification should be sent. Common events might include:
+     - **Shift Start/End**
+     - **Route Delays**
+     - **Accidents or Incidents**
+     - **Route Changes or Traffic Alerts**
+     - **Emergency Situations (e.g., panic button pressed)**
+   - **Conditions for Notifications**: Set conditions for which recipients should be alerted. For example:
+     - When a driver is delayed, send notifications to the driver, supervisor, and backup driver.
+     - When an emergency button is pressed, notify the driver, emergency contacts, and dispatch.
+
+   #### **Step 3: Notification Dispatch**
+   - **Push Notification Message**: When an event triggers a notification, the system creates a message detailing the issue (e.g., “Route 12: Delayed by 15 minutes due to traffic”). This message will be sent to the relevant group.
+     - The system identifies all members in the relevant notification group.
+     - Push notifications are sent to each user in the group, including their mobile devices or app notifications.
+   - **Message Delivery**: Each user (driver, supervisor, backup driver, etc.) will receive the same notification on their device.
+   
+   #### **Step 4: User Preferences (Optional)**
+   - **Customizable Preferences**: Users can customize what types of notifications they wish to receive. For example:
+     - A driver may choose to only receive emergency notifications, while a supervisor may want to receive all notifications related to delays, emergencies, and route changes.
+     - Backup drivers might receive notifications only when the primary driver is delayed or unavailable.
+   - **Override Notifications**: For critical events (e.g., accidents), notifications can override user preferences to ensure important messages are seen immediately.
+
+### 3. **Technical Implementation**
+
+#### **1. Notification System Components**
+   - **Push Notification Service**: Use services like **Firebase Cloud Messaging (FCM)** for Android or **Apple Push Notification Service (APNS)** for iOS to send the notifications.
+   - **Backend API**: A backend API handles the logic for:
+     - Storing notification group memberships.
+     - Defining which users (or groups) should receive notifications for specific events.
+     - Handling notification triggers and dispatch.
+
+#### **2. Group Management**
+   - The backend maintains a database of users and their roles, routes, or groups. For example:
+     - **Users Table**: Contains all driver, supervisor, and support staff profiles.
+     - **Notification Groups Table**: Contains information about which users are part of which notification groups.
+     - **Triggers Table**: Defines which events (like route delays, emergencies) trigger notifications.
+
+#### **3. Push Notification Workflow**
+   - **Step 1**: A driver reports a delay via the app (trigger event).
+   - **Step 2**: The app sends a request to the backend with the delay information.
+   - **Step 3**: The backend identifies the relevant notification groups (e.g., driver, supervisor, backup driver).
+   - **Step 4**: The backend creates a push notification message and sends it to FCM/APNS.
+   - **Step 5**: The push notification service delivers the message to all devices in the relevant groups.
+   - **Step 6**: Recipients (e.g., supervisors, backup drivers) receive the same message on their devices.
+
+---
+
+### 4. **Notification Group Example**
+
+**Scenario: Route Delay**
+
+- **Event Trigger**: Driver reports a delay of 15 minutes.
+- **Notification Message**: “Route 15: Delayed by 15 minutes due to traffic. Estimated arrival time: 10:30 AM.”
+- **Notification Recipients**:
+  - **Primary Recipient**: Driver (Driver 1).
+  - **Secondary Recipients**: 
+    - **Supervisor (Route Manager)**: "John Doe" (Role-based recipient).
+    - **Backup Driver**: "Driver 2" (Backup driver for the route).
+    - **Support Staff**: If required, the support staff on duty may also be notified.
+  
+These users are all part of a **Route 15 Delay Group**, meaning when the driver triggers a delay report, everyone in this group gets the same notification.
+
+---
+
+### 5. **User Interface for Managing Notification Groups**
+   - **Admins/Supervisors** can define or modify notification groups directly from the admin portal of the system. They can add or remove users from groups depending on routes or shifts.
+   - **Drivers and Support Staff** may have limited access to add specific individuals to their notification group (e.g., adding a backup driver), but the core functionality is managed by the system admins.
+
+---
+
+### Example Push Notification Workflow:
+
+1. **Driver Triggers Event**: The driver taps "Report Delay" in the app.
+2. **Backend Processing**: The app sends a request to the backend with delay information.
+3. **Backend Identifies Notification Group**: The backend finds the relevant group (Driver, Supervisor, Backup Driver).
+4. **Push Notification Creation**: The backend constructs a push notification.
+5. **Push Notification Delivery**: The notification service (FCM or APNS) sends the message to all devices in the group.
+6. **Notification Receipt**: The driver, supervisor, and backup driver all get the same notification on their devices.
+
+By using this system, the notification mechanism is both efficient and scalable, ensuring that everyone who needs to be informed of an event gets the right message at the right time, no matter their role.
