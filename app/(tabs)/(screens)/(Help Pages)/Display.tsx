@@ -1,48 +1,34 @@
-import { router } from 'expo-router';
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Linking } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Pressable } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { Link, router } from 'expo-router';
+
+
 
 const App = () => {
-    const FeedbackSuggestions = () => {
-        const supportUrl = "https://www.facebook.com/"; 
-        Linking.openURL(supportUrl)
-          .catch((err) => console.error("Failed to open URL:", err));
-      };
-    
-  
+  const navigation = useNavigation();
   return (
+
+
     <ScrollView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.userName}>Settings & Help</Text>
+        <Text style={styles.userName}>Display Settings</Text>
         <Image source={{ uri: 'https://via.placeholder.com/50' }} style={styles.profileImage} />
       </View>
 
-      {/* Actions */}
+      {/* Navigation Menu */}
       <View style={styles.menu}>
         <TouchableOpacity style={styles.menuItem}>
-          <Text style={styles.menuText}>Getting Started</Text>
+          <Text style={styles.menuText}>Font Size</Text>  
         </TouchableOpacity>
         <TouchableOpacity style={styles.menuItem}>
-          <Text style={styles.menuText}>Using the App</Text>
+          <Text style={styles.menuText}>Font Color</Text>  
         </TouchableOpacity>
         <TouchableOpacity style={styles.menuItem}>
-          <Text style={styles.menuText}  onPress={()=>router.push('/(tabs)/(screens)/(Help Pages)/Delays')}>Managing Delays & Disruptions</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
-          <Text style={styles.menuText}onPress={()=> router.push('/(tabs)/(screens)/(Help Pages)/Troubleshooting')}>Troubleshooting & Support</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
-          <Text style={styles.menuText} onPress={()=>router.push('/(tabs)/(screens)/(Help Pages)/Settings')}>App Settings</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem} onPress={FeedbackSuggestions}>
-          <Text style={styles.menuText}>Feedback & Suggestions</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
-          <Text style={styles.menuText}>FAQ</Text>
+          <Text style={styles.menuText}>Color Theme</Text>
         </TouchableOpacity>
       </View>
-
     </ScrollView>
   );
 };
@@ -80,7 +66,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   actionButton: {
-    backgroundColor: '#000',
+    backgroundColor: '#333',
     padding: 15,
     margin: 5,
     borderRadius: 10,

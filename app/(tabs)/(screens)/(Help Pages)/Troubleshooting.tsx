@@ -1,7 +1,29 @@
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Linking } from 'react-native';
 
 const App = () => {
+
+
+  // Toggle For Dropdown
+  const [isGpsVisible, setGpsVisible] = useState(false);
+  const [isAppCrashVisible, setAppCrashVisible] = useState(false);
+  const [isNotificationVisible, setNotificationVisible] = useState(false);
+  const [isUpdateVisible, setUpdateVisible] = useState(false);
+
+  // Dropdown Text
+  const gpsText = "Ensure Location is enabled on your device, Check for any software updates, and enable GPS tracking on the app and Restart the application. IF the issue persists, consider re-installing the application. ";
+  const appCrashText = "If your app crashes frequently, try clearing the cache or reinstalling the app. You can also check for any pending updates.";
+  const notificationText = "If you're not receiving notifications, ensure that notifications are enabled in the app settings and your device settings. Restart application if this issue persists.";
+  const updateText = "To update the app, go to Play store/App store and check if there is an available update. You can also enable auto-updates for smoother performance.";
+
+
+  const handleContactSupport = () => {
+    const supportUrl = "https://www.facebook.com/"; // Replace with your support URL
+    Linking.openURL(supportUrl)
+      .catch((err) => console.error("Failed to open URL:", err));
+  };
+
+
   return (
     <ScrollView style={styles.container}>
       {/* Header */}
@@ -12,26 +34,45 @@ const App = () => {
 
       {/* Actions */}
       <View style={styles.actionContainer}>
-        <TouchableOpacity style={styles.actionButton}>
+        <TouchableOpacity
+          style={styles.actionButton}
+          onPress={() => setGpsVisible(!isGpsVisible)}
+        >
           <Text style={styles.actionText}>GPS not Working?</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.actionButton}>
+        {isGpsVisible && <Text style={styles.dropdownText}>{gpsText}</Text>}
+
+        <TouchableOpacity
+          style={styles.actionButton}
+          onPress={() => setAppCrashVisible(!isAppCrashVisible)}
+        >
           <Text style={styles.actionText}>App crashes Frequently</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.actionButton}>
+        {isAppCrashVisible && <Text style={styles.dropdownText}>{appCrashText}</Text>}
+
+        <TouchableOpacity
+          style={styles.actionButton}
+          onPress={() => setNotificationVisible(!isNotificationVisible)}
+        >
           <Text style={styles.actionText}>Not receiving Notifications?</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.actionButton}>
+        {isNotificationVisible && <Text style={styles.dropdownText}>{notificationText}</Text>}
+
+        <TouchableOpacity
+          style={styles.actionButton}
+          onPress={() => setUpdateVisible(!isUpdateVisible)}
+        >
           <Text style={styles.actionText}>App Update Instructions</Text>
         </TouchableOpacity>
+        {isUpdateVisible && <Text style={styles.dropdownText}>{updateText}</Text>}
       </View>
 
       {/* Account Summary */}
-      <View style={styles.accountSummary}>
+      <View style={styles.accountSummary} >
+        <TouchableOpacity onPress={handleContactSupport}>
         <Text style={styles.accountTitle}>Still not working? Contact Support: </Text>
+        </TouchableOpacity>
       </View>
-
-    
     </ScrollView>
   );
 };
@@ -48,10 +89,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  greeting: {
-    color: '#fff',
-    fontSize: 16,
-  },
   userName: {
     color: '#fff',
     fontSize: 20,
@@ -63,9 +100,6 @@ const styles = StyleSheet.create({
     borderRadius: 25,
   },
   actionContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
     padding: 10,
   },
   actionButton: {
@@ -73,14 +107,22 @@ const styles = StyleSheet.create({
     padding: 15,
     margin: 5,
     borderRadius: 10,
-    width: '40%',
+    width: '80%',
     alignItems: 'center',
   },
   actionText: {
     color: '#fff',
-    fontSize: 14,
-    textAlignVertical: 'center',
+    fontSize: 16,
     textAlign: 'center',
+  },
+  dropdownText: {
+    color: '#fff',
+    backgroundColor: '#444',
+    padding: 10,
+    marginTop: 10,
+    borderRadius: 5,
+    textAlign: 'center',
+    fontSize: 14,
   },
   accountSummary: {
     backgroundColor: '#2C2C2C',
@@ -93,31 +135,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
-  },
-  balance: {
-    color: '#76FF03',
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginVertical: 10,
-  },
-  ledger: {
-    color: '#fff',
-    fontSize: 14,
-  },
-  menu: {
-    backgroundColor: '#2C2C2C',
-    padding: 10,
-    borderRadius: 10,
-    marginVertical: 10,
-  },
-  menuItem: {
-    padding: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#444',
-  },
-  menuText: {
-    color: '#fff',
-    fontSize: 16,
   },
 });
 

@@ -31,7 +31,7 @@ const App = () => {
           <Text style={styles.menuText}>Renew Insurance</Text>  
         </TouchableOpacity>
         <TouchableOpacity style={styles.menuItem} onPress={()=> router.push('/(tabs)/(screens)/(Insurance Pages)/Change')}>
-          <Text style={styles.menuText}>Change Insurance Company</Text>  
+          <Text style={styles.menuText}>Add/Change Insurance Company</Text>  
         </TouchableOpacity>
         <TouchableOpacity style={styles.menuItem}>
           <Text style={styles.menuText}>View/Update Insurance Details</Text>
